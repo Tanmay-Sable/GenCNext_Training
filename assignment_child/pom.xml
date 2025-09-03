@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>assignment_child</artifactId>
+    <version>1.0-SNAPSHOT</version>
+<!--SETTING THE POM AS PARENT -->
+    <parent>
+        <groupId>org.example</groupId>
+        <artifactId>assignment</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+<!--ADDING PLUGINS-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.3</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.3</version> <!-- Use the latest stable version -->
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+<!--    ADDING 3 profiles  -->
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <db.url>jdbc:mysql://localhost:3306/prod</db.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <db.url>jdbc:mysql://localhost:3306/dev</db.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>qa</id>
+            <properties>
+                <db.url>jdbc:mysql://localhost:3306/q</db.url>
+            </properties>
+        </profile>
+    </profiles>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+</project>
